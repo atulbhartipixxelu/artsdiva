@@ -4,7 +4,8 @@
     </IfModule>
 
     RewriteEngine On
-    RewriteBase /dev/artsdiva/
+    # Domain root (artsdiva.art) — use /. For /dev/artsdiva subdirectory, set RewriteBase /dev/artsdiva/
+    RewriteBase /
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .

@@ -2589,14 +2589,6 @@ h1, h2, h3,
   overflow: hidden;
 }
 
-.cat-hero::before {
-  content: "";
-  position: absolute;
-  inset: 12% 18% auto;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(14, 17, 22, 0.22), transparent);
-}
-
 .cat-hero__eyebrow {
   margin: 0 0 10px;
   font-family: var(--font-body);
