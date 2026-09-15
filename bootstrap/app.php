@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\Exceptions;
+use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Request;
+
+return Application::configure(basePath: dirname(__DIR__))
+    ->withRouting(
+        web: __DIR__.'/../routes/web.php',
+        commands: __DIR__.'/../routes/console.php',
+        health: '/up',
+    )
+    ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->alias([
+            'admin' => \App\Http\Middleware\EnsureAdmin::class,
+            'superadmin' => \App\Http\Middleware\EnsureSuperAdmin::class,
+            'customer' => \App\Http\Middleware\EnsureCustomer::class,
+        ]);
+
+        $middleware->redirectGuestsTo(function (\Illuminate\Http\Request $request) {
+            if ($request->is('admin') || $request->is('admin/*')) {
+                return route('login');
+            }
+
+            return route('account.login');
+        });
+
+        $middleware->redirectUsersTo(function () {
+            $user = auth()->user();
+            if ($user && $user->isAdmin()) {
+                return route('admin.dashboard');
+            }
+
+            return route('account.dashboard');
+        });
+    })
+    ->withExceptions(function (Exceptions $exceptions): void {
+        $exceptions->shouldRenderJsonWhen(
+            fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
+        );
+    })->create();
