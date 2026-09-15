@@ -23,7 +23,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\PageViewController;
 use App\Http\Controllers\PublicContentController;
+use App\Http\Controllers\StorageFileController;
 use Illuminate\Support\Facades\Route;
+
+// Hostinger-safe media: works even when public/storage symlink is missing/broken.
+Route::get('/storage/{path}', StorageFileController::class)
+    ->where('path', '.*')
+    ->name('storage.serve');
 
 Route::get('/', HomeController::class)->name('home');
 
