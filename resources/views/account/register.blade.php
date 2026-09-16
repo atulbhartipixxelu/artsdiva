@@ -41,6 +41,27 @@
                     <span>Phone <em>(optional)</em></span>
                     <input type="text" name="phone" value="{{ old('phone') }}" autocomplete="tel" placeholder="+91 …">
                 </label>
+                <label class="auth-field">
+                    <span>City <em>(optional)</em></span>
+                    <input type="text" name="city" value="{{ old('city') }}" autocomplete="address-level2" placeholder="Your city">
+                </label>
+                <fieldset class="auth-field">
+                    <span>Have you purchased art before? <em>(optional)</em></span>
+                    <div class="auth-form__row" style="gap:18px;margin-top:8px">
+                        <label style="display:inline-flex;align-items:center;gap:6px;font-weight:400">
+                            <input type="radio" name="purchased_art_before" value="yes" @checked(old('purchased_art_before')==='yes')>
+                            Yes
+                        </label>
+                        <label style="display:inline-flex;align-items:center;gap:6px;font-weight:400">
+                            <input type="radio" name="purchased_art_before" value="no" @checked(old('purchased_art_before')==='no')>
+                            No
+                        </label>
+                    </div>
+                </fieldset>
+                <label class="auth-field">
+                    <span>Please name some artists you admire <em>(optional)</em></span>
+                    <textarea name="admired_artists" rows="3" placeholder="e.g. names of artists you follow">{{ old('admired_artists') }}</textarea>
+                </label>
                 <div class="auth-form__pair">
                     <label class="auth-field">
                         <span>Password</span>

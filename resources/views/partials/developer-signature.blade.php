@@ -1,2 +1,2 @@
-<meta name="author" content="Atul Bharti">
-<link rel="author" href="https://www.linkedin.com/in/atul-bharti-52805b246/">
+<meta name="author" content="ArtsDiva">
+<meta name="application-name" content="ArtsDiva">

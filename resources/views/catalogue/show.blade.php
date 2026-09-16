@@ -187,10 +187,10 @@
 
         <div class="pd-tabs__panel is-active" data-panel="details" role="tabpanel">
             <div class="pd-detail-grid">
-                <div><span>Artwork ID</span><strong>AD-{{ str_pad($artwork['id'], 5, '0', STR_PAD_LEFT) }}</strong></div>
+                <div><span>Artwork ID</span><strong>{{ $artwork['serial_number'] ?: ('AD-'.str_pad((string) $artwork['id'], 4, '0', STR_PAD_LEFT)) }}</strong></div>
                 <div><span>Year</span><strong>{{ $artwork['year'] ?: '—' }}</strong></div>
                 <div><span>Medium</span><strong>{{ $artwork['medium'] ?: '—' }}</strong></div>
-                <div><span>Signature</span><strong>Signed by artist</strong></div>
+                <div><span>Signature</span><strong>Available on request</strong></div>
                 <div><span>Framing</span><strong>Unframed / Optional</strong></div>
                 <div><span>Frame Option</span><strong>Available on request</strong></div>
                 <div><span>Dimension</span><strong>{{ $artwork['dimensions'] ?: '—' }}</strong></div>

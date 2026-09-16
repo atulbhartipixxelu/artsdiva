@@ -6,7 +6,20 @@ return [
 
     'tagline' => 'Fine art acquisition and annual leasing',
 
-    'inquiry_email' => env('ARTSDIVA_INQUIRY_EMAIL', 'inquiries@artsdiva.com'),
+    'inquiry_email' => env('ARTSDIVA_INQUIRY_EMAIL', 'hello@artsdiva.art'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | New collector signup notification recipients
+    |--------------------------------------------------------------------------
+    */
+    'signup_notify_emails' => array_values(array_filter(array_map(
+        'trim',
+        explode(',', (string) env(
+            'ARTSDIVA_SIGNUP_NOTIFY_EMAILS',
+            'kim_singh@yahoo.com,bill_peller@yahoo.com'
+        ))
+    ))),
 
     /*
     |--------------------------------------------------------------------------

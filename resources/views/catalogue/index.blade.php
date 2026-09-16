@@ -2,6 +2,7 @@
 
 @section('title', 'Art Catalogue — ArtsDiva')
 @section('meta_description', 'Explore a curated collection of exceptional artworks from emerging and established artists worldwide. Filter by price, medium, size, artist and more.')
+@section('body_class', 'page-catalogue')
 
 @section('content')
 @php

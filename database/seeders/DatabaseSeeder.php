@@ -23,14 +23,14 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Super Admin',
             'email' => 'superadmin@artsdiva.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make(env('SEED_SUPERADMIN_PASSWORD', 'ChangeMe-SuperAdmin-'.date('Y'))),
             'role' => 'superadmin',
             'is_active' => true,
         ]);
         User::create([
             'name' => 'Content Admin',
             'email' => 'admin@artsdiva.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make(env('SEED_ADMIN_PASSWORD', 'ChangeMe-Admin-'.date('Y'))),
             'role' => 'admin',
             'is_active' => true,
         ]);

@@ -44,8 +44,7 @@
 
             <div class="footer-col">
                 <h4>Contact</h4>
-                <p>+1 (000) 000-0000</p>
-                <p>hello@artsdiva.com</p>
+                <p><a href="mailto:hello@artsdiva.art">hello@artsdiva.art</a></p>
                 <a href="{{ route('contact') }}">Get in touch</a>
             </div>
         </div>

@@ -18,8 +18,8 @@
     <div class="auth-stage__panel">
         <div class="auth-stage__panel-inner">
             <p class="auth-card__eyebrow">Collectors</p>
-            <h1 class="auth-card__title">Welcome back</h1>
-            <p class="auth-card__lede">Sign in to view purchases, wishlist, and your profile.</p>
+            <h1 class="auth-card__title">Sign in</h1>
+            <p class="auth-card__lede">Welcome back — view purchases, wishlist, and your profile.</p>
 
             @if($errors->any())
                 <div class="account-flash account-flash--err">

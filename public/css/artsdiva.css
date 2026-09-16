@@ -1,8 +1,4 @@
-/* ArtsDiva — public site styles (gallery / brochure layout)
- *
- * Designed & Developed with precision by Atul Bharti.
- * LinkedIn: https://www.linkedin.com/in/atul-bharti-52805b246/
- */
+/* ArtsDiva — public site styles (gallery / brochure layout) */
 
 :root {
   --ad-black: #0e1116;
@@ -2582,11 +2578,24 @@ h1, h2, h3,
 }
 
 /* ---------- Catalogue page (mockup) ---------- */
+body.page-catalogue .site-header {
+  border-bottom: none;
+  box-shadow: none;
+}
+
 .cat-hero {
   position: relative;
   padding: 56px 0 36px;
   text-align: center;
   overflow: hidden;
+  border: 0;
+  box-shadow: none;
+}
+
+.cat-hero::before,
+.cat-hero::after {
+  content: none !important;
+  display: none !important;
 }
 
 .cat-hero__eyebrow {

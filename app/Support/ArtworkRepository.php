@@ -256,7 +256,11 @@ class ArtworkRepository
         $tier = $this->lease->rateFor((float) $art->price_eur);
         $leaseEur = $this->lease->annualLeaseEur((float) $art->price_eur);
         [$width, $height] = $this->parseWidthHeight($art->dimensions);
-        $location = collect([$art->city, $art->artist?->country])->filter()->implode(', ');
+        // Use linked artist city+country pair (avoids mismatched artwork.city + artist.country).
+        $location = collect([
+            $art->artist?->city ?: $art->city,
+            $art->artist?->country,
+        ])->filter()->unique()->implode(', ');
 
         return [
             'id' => (string) $art->id,
