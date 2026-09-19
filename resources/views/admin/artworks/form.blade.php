@@ -22,7 +22,8 @@
 <div><label>Thumbnail</label><input type="file" name="thumbnail" accept="image/*">@if($item->thumbnail)<p><img class="thumb" src="{{ asset($item->thumbnail) }}"></p>@endif</div>
 <div><label>Gallery images</label><input type="file" name="gallery_images[]" accept="image/*" multiple></div>
 <div><label>Sort order</label><input type="number" name="sort_order" value="{{ old('sort_order',$item->sort_order ?? 0) }}"></div>
-<label class="check"><input type="checkbox" name="is_published" value="1" @checked(old('is_published',$item->is_published ?? true))> Published</label>
+<label class="check"><input type="checkbox" name="is_published" value="1" @checked(old('is_published',$item->is_published ?? true))> Published (saved in catalogue system)</label>
+<label class="check"><input type="checkbox" name="is_visible" value="1" @checked(old('is_visible',$item->is_visible ?? false))> Visible on public site <small style="font-weight:400;color:#666">(only switch on when all fields are complete)</small></label>
 <label class="check"><input type="checkbox" name="is_featured" value="1" @checked(old('is_featured',$item->is_featured ?? false))> Featured</label>
 </div>
 <div class="actions" style="margin-top:16px;"><button class="btn" type="submit">Save</button><a class="btn secondary" href="{{ route('admin.artworks.index') }}">Cancel</a></div>

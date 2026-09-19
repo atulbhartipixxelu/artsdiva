@@ -51,13 +51,13 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('partials.header', function ($view) {
             $view->with('megaMenu', [
-                'artworks' => Artwork::published()
+                'artworks' => Artwork::listed()
                     ->with('artist')
                     ->orderBy('sort_order')
                     ->orderByDesc('id')
                     ->limit(3)
                     ->get(),
-                'categories' => Artwork::published()
+                'categories' => Artwork::listed()
                     ->whereNotNull('category')
                     ->where('category', '!=', '')
                     ->distinct()

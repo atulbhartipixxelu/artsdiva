@@ -99,7 +99,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::put('pages/{page}', [PageController::class, 'update'])->name('pages.update');
 
     Route::patch('{type}/{id}/toggle-status', StatusToggleController::class)
-        ->whereIn('type', ['artworks', 'artists', 'hero', 'exhibitions', 'events', 'news', 'publications', 'pages', 'users'])
+        ->whereIn('type', ['artworks', 'artwork-visibility', 'artists', 'hero', 'exhibitions', 'events', 'news', 'publications', 'pages', 'users'])
         ->whereNumber('id')
         ->name('toggle-status');
 

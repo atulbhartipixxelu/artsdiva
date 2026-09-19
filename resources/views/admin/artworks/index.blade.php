@@ -14,11 +14,12 @@
     </form>
     <a class="btn" href="{{ route('admin.artworks.create') }}">Add Artwork</a>
 </div>
+<p style="color:#666;margin:8px 0 16px;font-size:13px;">Public site shows only rows that are both <strong>Published</strong> and <strong>Visible</strong>. New / incomplete works stay Visible = Off.</p>
 <table>
-<thead><tr><th></th><th>Serial</th><th>Title</th><th>Artist</th><th>Price EUR</th><th>Status</th><th></th></tr></thead>
+<thead><tr><th></th><th>Serial</th><th>Title</th><th>Artist</th><th>Price EUR</th><th>Published</th><th>Visible</th><th></th></tr></thead>
 <tbody>
 @forelse($items as $item)
-<tr class="{{ $item->is_published ? '' : 'is-row-inactive' }}">
+<tr class="{{ ($item->is_published && $item->is_visible) ? '' : 'is-row-inactive' }}">
 <td>@if($item->thumbnail)<img class="thumb" src="{{ asset($item->thumbnail) }}" alt="">@endif</td>
 <td><code>{{ $item->serial_number ?: '—' }}</code></td>
 <td>{{ $item->title }}</td>
@@ -28,6 +29,16 @@
 @include('admin.partials.status-toggle', [
     'active' => $item->is_published,
     'route' => route('admin.toggle-status', ['type' => 'artworks', 'id' => $item->id]),
+    'onLabel' => 'Published',
+    'offLabel' => 'Draft',
+])
+</td>
+<td>
+@include('admin.partials.status-toggle', [
+    'active' => $item->is_visible,
+    'route' => route('admin.toggle-status', ['type' => 'artwork-visibility', 'id' => $item->id]),
+    'onLabel' => 'Visible',
+    'offLabel' => 'Hidden',
 ])
 </td>
 <td class="actions">
@@ -36,7 +47,7 @@
 </td>
 </tr>
 @empty
-<tr><td colspan="7">No artworks found.</td></tr>
+<tr><td colspan="8">No artworks found.</td></tr>
 @endforelse
 </tbody>
 </table>

@@ -90,7 +90,7 @@ class CatalogueController extends Controller
         $like = '%'.$q.'%';
         $serialNeedle = '%'.strtoupper(str_replace([' ', '-'], '', $q)).'%';
 
-        $artworks = Artwork::published()
+        $artworks = Artwork::listed()
             ->with('artist')
             ->where(function ($query) use ($like, $serialNeedle) {
                 $query->where('title', 'like', $like)
@@ -125,7 +125,7 @@ class CatalogueController extends Controller
                     ->orWhere('city', 'like', $like)
                     ->orWhere('country', 'like', $like);
             })
-            ->withCount(['artworks' => fn ($q) => $q->published()])
+            ->withCount(['artworks' => fn ($q) => $q->listed()])
             ->orderBy('sort_order')
             ->orderBy('name')
             ->limit(5)

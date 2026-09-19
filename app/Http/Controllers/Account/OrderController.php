@@ -21,7 +21,7 @@ class OrderController extends Controller
             'notes' => ['nullable', 'string', 'max:2000'],
         ]);
 
-        $artwork = Artwork::with('artist')->published()->findOrFail($data['artwork_id']);
+        $artwork = Artwork::with('artist')->listed()->findOrFail($data['artwork_id']);
 
         $order = DB::transaction(function () use ($artwork, $data) {
             $order = Order::create([

@@ -11,7 +11,7 @@ class Artwork extends Model
     protected $fillable = [
         'artist_id', 'title', 'slug', 'serial_number', 'city', 'category', 'price_eur',
         'dimensions', 'weight', 'year', 'medium', 'description',
-        'thumbnail', 'gallery', 'is_featured', 'is_published', 'sort_order',
+        'thumbnail', 'gallery', 'is_featured', 'is_published', 'is_visible', 'sort_order',
     ];
 
     protected function casts(): array
@@ -21,6 +21,7 @@ class Artwork extends Model
             'gallery' => 'array',
             'is_featured' => 'boolean',
             'is_published' => 'boolean',
+            'is_visible' => 'boolean',
         ];
     }
 
@@ -29,6 +30,9 @@ class Artwork extends Model
         static::saving(function (Artwork $artwork) {
             if (blank($artwork->slug)) {
                 $artwork->slug = Str::slug($artwork->title);
+            }
+            if ($artwork->is_visible === null) {
+                $artwork->is_visible = false;
             }
         });
     }
@@ -41,6 +45,17 @@ class Artwork extends Model
     public function scopePublished($query)
     {
         return $query->where('is_published', true);
+    }
+
+    public function scopeVisible($query)
+    {
+        return $query->where('is_visible', true);
+    }
+
+    /** Public catalogue: published AND manually switched visible. */
+    public function scopeListed($query)
+    {
+        return $query->published()->visible();
     }
 
     public function imageUrl(?string $path = null): string

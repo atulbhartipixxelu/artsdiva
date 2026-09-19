@@ -178,7 +178,7 @@
 
 
 {{-- Forthcoming exhibitions slider --}}
-
+@if($exhibitions->isNotEmpty())
 <section class="section exhibitions" data-exhibitions-slider>
     <div class="container">
         <div class="ex-head">
@@ -215,7 +215,9 @@
         </div>
     </div>
 </section>
+@endif
 
+@if($exhibitions->isNotEmpty())
 @push('scripts')
 <script>
 (function () {
@@ -274,6 +276,7 @@
 })();
 </script>
 @endpush
+@endif
 
 
 {{-- Curated art for every space --}}
@@ -298,7 +301,7 @@
 </section>
 
 {{-- Forthcoming events slider --}}
-
+@if($events->isNotEmpty())
 <section class="events-section" data-events-slider>
     <div class="container">
         <div class="ex-head">
@@ -409,6 +412,7 @@
 })();
 </script>
 @endpush
+@endif
 
 {{-- Fine art acquisition & leasing --}}
 <section class="lease-band" aria-labelledby="lease-band-title">

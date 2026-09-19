@@ -25,7 +25,7 @@ class ArtworkRepository
 
     public function all(): Collection
     {
-        return Artwork::published()
+        return Artwork::listed()
             ->with('artist')
             ->orderBy('sort_order')
             ->orderBy('title')
@@ -35,14 +35,14 @@ class ArtworkRepository
 
     public function findBySlug(string $slug): ?array
     {
-        $item = Artwork::published()->with('artist')->where('slug', $slug)->first();
+        $item = Artwork::listed()->with('artist')->where('slug', $slug)->first();
 
         return $item ? $this->enrich($item) : null;
     }
 
     public function categories(): Collection
     {
-        return Artwork::published()
+        return Artwork::listed()
             ->whereNotNull('category')
             ->where('category', '!=', '')
             ->distinct()
@@ -52,7 +52,7 @@ class ArtworkRepository
 
     public function facets(): array
     {
-        $all = Artwork::published()->with('artist')->get();
+        $all = Artwork::listed()->with('artist')->get();
 
         $categories = $all->groupBy('category')
             ->filter(fn ($group, $key) => filled($key))
@@ -101,7 +101,7 @@ class ArtworkRepository
 
     public function filter(array $filters, int $perPage = 12): LengthAwarePaginator
     {
-        $query = Artwork::published()->with('artist');
+        $query = Artwork::listed()->with('artist');
         $this->applyFilters($query, $filters);
         $this->applySort($query, $filters['sort'] ?? 'recommended');
 
@@ -167,7 +167,7 @@ class ArtworkRepository
         $height = isset($filters['height']) && $filters['height'] !== '' ? (float) $filters['height'] : null;
 
         if ($sizes || $width !== null || $height !== null) {
-            $ids = Artwork::published()->get()
+            $ids = Artwork::listed()->get()
                 ->filter(function (Artwork $art) use ($sizes, $width, $height) {
                     if ($sizes) {
                         $ok = false;

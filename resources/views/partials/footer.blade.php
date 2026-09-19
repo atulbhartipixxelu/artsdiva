@@ -10,36 +10,21 @@
                     <input type="email" name="email" placeholder="Your email..." aria-label="Email for newsletter" required>
                     <button type="submit" aria-label="Subscribe">→</button>
                 </form>
-                <div class="socials">
-                    <a href="#" aria-label="Facebook">Fb</a>
-                    <a href="#" aria-label="Instagram">Ig</a>
-                    <a href="#" aria-label="LinkedIn">In</a>
-                    <a href="#" aria-label="Pinterest">Pi</a>
-                </div>
             </div>
 
             <div class="footer-col">
-                <h4>Company</h4>
-                <a href="{{ route('about') }}">About</a>
-                <a href="{{ route('artists') }}">Artists</a>
-                <a href="{{ route('events') }}">Events</a>
-                <a href="{{ route('contact') }}">Careers</a>
-            </div>
-
-            <div class="footer-col">
-                <h4>Information</h4>
-                <a href="{{ route('services') }}">Acquisition</a>
-                <a href="{{ route('inquiry.create') }}">Annual Leasing</a>
+                <h4>Explore</h4>
                 <a href="{{ route('catalogue.index') }}">Catalogue</a>
-                <a href="{{ route('contact') }}">Privacy</a>
+                <a href="{{ route('artists') }}">Artists</a>
+                <a href="{{ route('about') }}">About</a>
+                <a href="{{ route('services') }}">Services</a>
             </div>
 
             <div class="footer-col">
-                <h4>Resources</h4>
-                <a href="{{ route('publications') }}">Publications</a>
-                <a href="{{ route('news') }}">News</a>
-                <a href="{{ route('contact') }}">FAQ</a>
-                <a href="{{ route('inquiry.create') }}">Request Lease</a>
+                <h4>Collect</h4>
+                <a href="{{ route('inquiry.create') }}">Annual Leasing</a>
+                <a href="{{ route('services') }}">Acquisition</a>
+                <a href="{{ route('contact') }}">Contact</a>
             </div>
 
             <div class="footer-col">

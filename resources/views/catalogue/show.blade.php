@@ -119,6 +119,15 @@
                     <strong>Estimated Annual Lease Rate</strong>
                     <p class="pd-lease__price">{{ $artwork['lease_annual_formatted'] }} <span>/ year</span></p>
                     <p class="pd-lease__note">At {{ $artwork['lease_rate_label'] }} of acquisition value per annum</p>
+                    <details style="margin-top:10px">
+                        <summary style="cursor:pointer;font-size:13px">View lease rate table</summary>
+                        <ul style="margin:8px 0 0;padding-left:18px;font-size:13px;color:#555;line-height:1.65">
+                            <li>Under €25,000 — 10% / year</li>
+                            <li>Under €50,000 — 8% / year</li>
+                            <li>Under €100,000 — 6.5% / year</li>
+                            <li>€100,000 and above — 5% / year</li>
+                        </ul>
+                    </details>
                 </div>
                 <a class="btn btn--outline btn--sm" href="{{ route('leasing') }}">View Leasing Structure</a>
             </div>

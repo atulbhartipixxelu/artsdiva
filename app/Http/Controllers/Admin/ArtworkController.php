@@ -136,6 +136,7 @@ class ArtworkController extends Controller
         $data['serial_number'] = strtoupper(trim($data['serial_number']));
         $data['is_featured'] = $request->boolean('is_featured');
         $data['is_published'] = $request->boolean('is_published');
+        $data['is_visible'] = $request->boolean('is_visible');
         $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
         unset($data['gallery_images']);
 

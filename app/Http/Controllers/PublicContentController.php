@@ -13,17 +13,24 @@ class PublicContentController extends Controller
     public function artists()
     {
         return view('content.artists', [
-            'artists' => Artist::published()->orderBy('sort_order')->orderBy('name')->get(),
+            'artists' => Artist::published()
+                ->whereHas('artworks', fn ($q) => $q->listed())
+                ->orderBy('sort_order')
+                ->orderBy('name')
+                ->get(),
         ]);
     }
 
     public function artistShow(string $slug)
     {
-        $artist = Artist::published()->where('slug', $slug)->firstOrFail();
+        $artist = Artist::published()
+            ->where('slug', $slug)
+            ->whereHas('artworks', fn ($q) => $q->listed())
+            ->firstOrFail();
 
         return view('content.artist-show', [
             'artist' => $artist,
-            'artworks' => $artist->artworks()->published()->orderBy('sort_order')->orderBy('title')->get(),
+            'artworks' => $artist->artworks()->listed()->orderBy('sort_order')->orderBy('title')->get(),
         ]);
     }
 
@@ -65,7 +72,7 @@ class PublicContentController extends Controller
     public function publicationShow(string $slug)
     {
         $publication = Publication::published()->where('slug', $slug)->firstOrFail();
-        $artwork = \App\Models\Artwork::published()
+        $artwork = \App\Models\Artwork::listed()
             ->where('title', $publication->title)
             ->first();
 

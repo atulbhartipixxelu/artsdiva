@@ -17,7 +17,8 @@ use Illuminate\Http\Request;
 class StatusToggleController extends Controller
 {
     protected array $map = [
-        'artworks' => [Artwork::class, 'is_published', 'Artwork'],
+        'artworks' => [Artwork::class, 'is_published', 'Artwork published'],
+        'artwork-visibility' => [Artwork::class, 'is_visible', 'Artwork visibility'],
         'artists' => [Artist::class, 'is_published', 'Artist'],
         'hero' => [HeroSlide::class, 'is_published', 'Hero slide'],
         'exhibitions' => [Exhibition::class, 'is_published', 'Exhibition'],
